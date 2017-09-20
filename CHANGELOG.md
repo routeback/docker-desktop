@@ -1,12 +1,12 @@
 # Changelog
 
 ## 0.5.0 (2017-09-19) - @routeback
- + Fixed Issue: Outdated xpra has been updated to 0.15.10
- + Fixed Issue: Install dependencies for updated xpra
- + Functionality: Added a script to automate connecting to the docker container
+ - Removed LibreOffice from Dockerfile
+ + Fixed Issue: Outdated xpra has been updated to 0.15.10 via Dockerfile additions and changes - Resolves issue #38
+ + Fixed Issue: Install dependencies for updated xpra via Dockerfile - Resolves issue #38
+ + Functionality: install.sh - Shell script to build the docker image from the Dockerfile
+ + Functionality: connect.sh - Shell script to automate connecting to the docker container
  + Formatting: Changed README.md to properly display markdown tags when viewing on github
- + Added: install.sh - Shell script to build the docker image from the Dockerfile
- + Added: connect.sh - Shell script to automate connecting to the docker container
 
 ## 0.4.0 (2014-08-19)
  + OS: Upgraded from 12.10 to 14.04
