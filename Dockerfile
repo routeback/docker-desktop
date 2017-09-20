@@ -27,7 +27,8 @@ RUN apt-get upgrade -y
 ENV DEBIAN_FRONTEND noninteractive
 
 # Installing the environment required: xserver, xdm, flux box, roc-filer and ssh
-RUN apt-get install -y xpra rox-filer openssh-server pwgen xserver-xephyr xdm fluxbox xvfb sudo
+# Removed xpra to install an updated version separately
+RUN apt-get install -y rox-filer openssh-server pwgen xserver-xephyr xdm fluxbox xvfb sudo
 
 # Configuring xdm to allow connections from any IP address and ssh to allow X11 Forwarding. 
 RUN sed -i 's/DisplayManager.requestPort/!DisplayManager.requestPort/g' /etc/X11/xdm/xdm-config
@@ -52,7 +53,18 @@ RUN apt-get -y install fuse
 
 # Installing the apps: Firefox, flash player plugin, LibreOffice and xterm
 # libreoffice-base installs libreoffice-java mentioned before
-RUN apt-get install -y libreoffice-base firefox libreoffice-gtk libreoffice-calc xterm
+# Removed LibreOffice
+RUN apt-get install -y firefox xterm
+
+# Install curl, pull python-rencode and updated xpra, use gdebi to attempt to install both packages as well as install any missing dependencies, verify xpra version is 0.15.10
+RUN apt-get install -y curl
+RUN apt-get install -y gdebi-core
+RUN curl http://ftp.us.debian.org/debian/pool/main/p/python-rencode/python-rencode_1.0.5-1+b1_amd64.deb -o python-rencode_amd64.deb
+RUN curl http://xpra.org/dists/trusty/main/binary-amd64/xpra_0.15.10-1_amd64.deb -o xpra_0.15.10-1_amd64.deb
+RUN gdebi --n python-rencode_amd64.deb
+RUN gdebi --n xpra_0.15.10-1_amd64.deb
+RUN apt-get -f -y install
+RUN xpra --version
 
 # Set locale (fix the locale warnings)
 RUN localedef -v -c -i en_US -f UTF-8 en_US.UTF-8 || :

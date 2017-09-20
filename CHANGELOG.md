@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.5.0 (2017-09-19)
+ + Fixed Issue: Outdated xpra has been updated to 0.15.10
+ + Fixed Issue: Install dependencies for updated xpra
+ + Functionality: Added a script to automate connecting to the docker container
+ + Formatting: Changed README.md to properly display markdown tags when viewing on github
+
 ## 0.4.0 (2014-08-19)
  + OS: Upgraded from 12.10 to 14.04
  + Fixed Issue: Added a packet (Xvfb) to make the program work under ubuntu 14.04 (by @clu2)
